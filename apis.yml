@@ -5,11 +5,11 @@ description: >-
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - Containers
-  - Registry
   - Container Images
-  - Security Scanning
+  - Containers
   - Red Hat
+  - Registry
+  - Security Scanning
 url: >-
   https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/apis.yml
 created: '2026-03-26'
@@ -22,9 +22,9 @@ apis:
       Quay is a container image registry that enables you to build, store, distribute, and deploy container images with built-in security scanning, access controls, and automated build triggers.
     humanURL: https://quay.io/
     tags:
+      - Container Images
       - Containers
       - Registry
-      - Container Images
       - Security Scanning
     properties:
       - type: Documentation
