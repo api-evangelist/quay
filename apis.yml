@@ -13,7 +13,7 @@ tags:
 url: >-
   https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/apis.yml
 created: '2026-03-26'
-modified: '2026-03-26'
+modified: '2026-04-28'
 specificationVersion: '0.19'
 apis:
   - aid: quay:quay
@@ -21,6 +21,7 @@ apis:
     description: >-
       Quay is a container image registry that enables you to build, store, distribute, and deploy container images with built-in security scanning, access controls, and automated build triggers.
     humanURL: https://quay.io/
+    baseURL: https://quay.io/api/v1
     tags:
       - Container Images
       - Containers
@@ -33,6 +34,16 @@ apis:
         url: https://docs.quay.io/guides/
       - type: Pricing
         url: https://quay.io/plans/
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/openapi/quay-openapi.yml
+      - type: JSONLD
+        url: https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-ld/quay-context.jsonld
+      - type: JSONSchema
+        url: https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-schema/quay-repository-schema.json
+      - type: JSONSchema
+        url: https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-schema/quay-tag-schema.json
+      - type: JSONSchema
+        url: https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-schema/quay-manifest-security-schema.json
 common:
   - type: Website
     url: https://quay.io/

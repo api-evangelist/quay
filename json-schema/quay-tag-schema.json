@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-schema/quay-tag-schema.json",
+  "title": "Quay Tag",
+  "description": "Schema describing a tag pointing at a manifest in a Quay repository.",
+  "type": "object",
+  "required": ["name", "manifest_digest"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Tag name (e.g. latest, v1.0.0)."
+    },
+    "manifest_digest": {
+      "type": "string",
+      "description": "Digest of the manifest the tag points at (sha256:...)."
+    },
+    "is_manifest_list": {
+      "type": "boolean"
+    },
+    "size": {
+      "type": ["integer", "null"]
+    },
+    "last_modified": {
+      "type": "string"
+    },
+    "start_ts": {
+      "type": "integer"
+    },
+    "end_ts": {
+      "type": ["integer", "null"]
+    },
+    "expiration": {
+      "type": ["string", "null"]
+    },
+    "reversion": {
+      "type": "boolean"
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "name": "name",
+    "description": "description",
+    "url": "url",
+    "provider": "provider",
+    "category": "category",
+    "documentation": {
+      "@id": "https://schema.org/documentation",
+      "@type": "@id"
+    },
+    "termsOfService": {
+      "@id": "https://schema.org/termsOfService",
+      "@type": "@id"
+    }
+  },
+  "@type": "WebAPI",
+  "name": "Quay Container Registry API",
+  "description": "Quay is a container image registry that enables you to build, store, distribute, and deploy container images with built-in security scanning, access controls, and automated build triggers.",
+  "url": "https://quay.io/api/v1",
+  "documentation": "https://docs.quay.io/api/",
+  "termsOfService": "https://quay.io/tos",
+  "provider": {
+    "@type": "Organization",
+    "name": "Red Hat",
+    "url": "https://www.redhat.com/"
+  },
+  "category": [
+    "Container Images",
+    "Container Registry",
+    "Security Scanning",
+    "DevOps"
+  ],
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "Developers, DevOps Engineers, Platform Engineers"
+  },
+  "potentialAction": [
+    {
+      "@type": "ConsumeAction",
+      "name": "List Repositories",
+      "target": "https://quay.io/api/v1/repository"
+    },
+    {
+      "@type": "ConsumeAction",
+      "name": "Get Manifest Security",
+      "target": "https://quay.io/api/v1/repository/{repository}/manifest/{manifestref}/security"
+    }
+  ]
+}

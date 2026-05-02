@@ -1,0 +1,365 @@
+openapi: 3.1.0
+info:
+  title: Quay Container Registry API
+  description: >-
+    The Quay API provides programmatic access to the Quay container image
+    registry. Developers can manage repositories, organizations, users, robot
+    accounts, teams, builds, build triggers, tags, manifests, vulnerability
+    scans, and access permissions. The API supports the full lifecycle of
+    container image distribution including image push and pull workflows,
+    automated build configuration via integrations with source code
+    repositories, security scanning of stored images, and fine-grained access
+    control via OAuth tokens and robot account credentials. The API is
+    available against Quay.io hosted service and on Red Hat Quay self-hosted
+    installations through the same /api/v1 surface.
+  version: '1.0.0'
+  contact:
+    name: Red Hat Quay Support
+    url: https://access.redhat.com/products/red-hat-quay/
+  termsOfService: https://quay.io/tos
+externalDocs:
+  description: Quay API Explorer and Documentation
+  url: https://docs.quay.io/api/
+servers:
+  - url: https://quay.io/api/v1
+    description: Quay.io hosted production server
+tags:
+  - name: Repository
+    description: >-
+      Manage container image repositories including create, list, update,
+      delete, visibility, descriptions, and metadata.
+  - name: Organization
+    description: >-
+      Manage Quay organizations, organization members, billing, application
+      tokens, and organization-wide settings.
+  - name: User
+    description: >-
+      Manage Quay user accounts, profile, starred repositories, and personal
+      OAuth tokens.
+  - name: Team
+    description: >-
+      Manage organization teams, team membership, team roles, and team
+      permissions on repositories.
+  - name: Robot
+    description: >-
+      Manage robot accounts used for automated repository access including
+      credentials and permissions.
+  - name: Build
+    description: >-
+      Manage Dockerfile builds, build logs, build triggers, and build
+      configuration.
+  - name: Tag
+    description: >-
+      Manage repository image tags including listing, restoring, expiring,
+      and deleting tags.
+  - name: Manifest
+    description: >-
+      Inspect image manifests, manifest layers, and labels associated with a
+      pushed image.
+  - name: Permission
+    description: >-
+      Manage user and team permissions on repositories.
+  - name: Security
+    description: >-
+      Retrieve vulnerability scan results for repository images.
+paths:
+  /repository:
+    get:
+      tags:
+        - Repository
+      summary: List repositories
+      description: List repositories visible to the authenticated user with optional filters.
+      operationId: listRepos
+      parameters:
+        - name: namespace
+          in: query
+          schema:
+            type: string
+        - name: public
+          in: query
+          schema:
+            type: boolean
+        - name: starred
+          in: query
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Successful response
+    post:
+      tags:
+        - Repository
+      summary: Create a new repository
+      operationId: createRepo
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                namespace:
+                  type: string
+                repository:
+                  type: string
+                visibility:
+                  type: string
+                  enum: [public, private]
+                description:
+                  type: string
+      responses:
+        '201':
+          description: Repository created
+  /repository/{repository}:
+    get:
+      tags:
+        - Repository
+      summary: Get repository details
+      operationId: getRepo
+      parameters:
+        - name: repository
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+    delete:
+      tags:
+        - Repository
+      summary: Delete repository
+      operationId: deleteRepo
+      parameters:
+        - name: repository
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Repository deleted
+  /repository/{repository}/tag/:
+    get:
+      tags:
+        - Tag
+      summary: List repository tags
+      operationId: listRepoTags
+      parameters:
+        - name: repository
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+  /repository/{repository}/tag/{tag}:
+    put:
+      tags:
+        - Tag
+      summary: Create or update a tag
+      operationId: changeTag
+      parameters:
+        - name: repository
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: tag
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Tag created
+    delete:
+      tags:
+        - Tag
+      summary: Delete a tag
+      operationId: deleteTag
+      parameters:
+        - name: repository
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: tag
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Tag deleted
+  /repository/{repository}/manifest/{manifestref}:
+    get:
+      tags:
+        - Manifest
+      summary: Get manifest by digest
+      operationId: getManifest
+      parameters:
+        - name: repository
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: manifestref
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Manifest details
+  /repository/{repository}/manifest/{manifestref}/security:
+    get:
+      tags:
+        - Security
+      summary: Get vulnerability scan results for a manifest
+      operationId: getManifestSecurity
+      parameters:
+        - name: repository
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: manifestref
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Vulnerability scan results
+  /repository/{repository}/build/:
+    get:
+      tags:
+        - Build
+      summary: List builds for a repository
+      operationId: listRepoBuilds
+      parameters:
+        - name: repository
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+    post:
+      tags:
+        - Build
+      summary: Request a new build
+      operationId: requestRepoBuild
+      parameters:
+        - name: repository
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Build queued
+  /organization/{orgname}:
+    get:
+      tags:
+        - Organization
+      summary: Get organization details
+      operationId: getOrganization
+      parameters:
+        - name: orgname
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+  /organization/{orgname}/team/{teamname}:
+    put:
+      tags:
+        - Team
+      summary: Create or update a team
+      operationId: updateOrganizationTeam
+      parameters:
+        - name: orgname
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: teamname
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Team updated
+  /organization/{orgname}/robots/{robot_shortname}:
+    put:
+      tags:
+        - Robot
+      summary: Create a robot account
+      operationId: createOrgRobot
+      parameters:
+        - name: orgname
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: robot_shortname
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Robot created
+  /user/:
+    get:
+      tags:
+        - User
+      summary: Get authenticated user
+      operationId: getLoggedInUser
+      responses:
+        '200':
+          description: Successful response
+  /repository/{repository}/permissions/user/{username}:
+    put:
+      tags:
+        - Permission
+      summary: Set user repository permission
+      operationId: changeUserPermissions
+      parameters:
+        - name: repository
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: username
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Permission updated
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://quay.io/oauth/authorize
+          tokenUrl: https://quay.io/oauth/access_token
+          scopes:
+            repo:read: Read repositories
+            repo:write: Write repositories
+            repo:admin: Administer repositories
+            org:admin: Administer organizations
+            user:read: Read user info
+            user:admin: Administer the user
+security:
+  - OAuth2: []

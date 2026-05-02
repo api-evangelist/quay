@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-schema/quay-repository-schema.json",
+  "title": "Quay Repository",
+  "description": "Schema describing a container image repository in Quay.",
+  "type": "object",
+  "required": ["namespace", "name"],
+  "properties": {
+    "namespace": {
+      "type": "string",
+      "description": "Owning user or organization namespace."
+    },
+    "name": {
+      "type": "string",
+      "description": "Repository name within the namespace."
+    },
+    "description": {
+      "type": "string",
+      "description": "Markdown description of the repository."
+    },
+    "visibility": {
+      "type": "string",
+      "enum": ["public", "private"]
+    },
+    "is_organization": {
+      "type": "boolean"
+    },
+    "is_starred": {
+      "type": "boolean"
+    },
+    "kind": {
+      "type": "string",
+      "enum": ["image", "application"]
+    },
+    "state": {
+      "type": "string",
+      "enum": ["NORMAL", "READ_ONLY", "MIRROR"]
+    },
+    "trust_enabled": {
+      "type": "boolean"
+    },
+    "tag_expiration_s": {
+      "type": "integer",
+      "description": "Default tag expiration in seconds."
+    },
+    "last_modified": {
+      "type": ["integer", "null"],
+      "description": "Unix timestamp of last modification."
+    }
+  }
+}

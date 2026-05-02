@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-schema/quay-manifest-security-schema.json",
+  "title": "Quay Manifest Security Scan",
+  "description": "Schema describing the result of a Clair vulnerability scan for a Quay manifest.",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": ["queued", "scanning", "scanned", "unsupported", "error"]
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "Layer": {
+          "type": "object",
+          "properties": {
+            "Name": {
+              "type": "string"
+            },
+            "ParentName": {
+              "type": "string"
+            },
+            "NamespaceName": {
+              "type": "string"
+            },
+            "IndexedByVersion": {
+              "type": "integer"
+            },
+            "Features": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "Name": { "type": "string" },
+                  "Version": { "type": "string" },
+                  "VersionFormat": { "type": "string" },
+                  "Vulnerabilities": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "Name": { "type": "string" },
+                        "NamespaceName": { "type": "string" },
+                        "Description": { "type": "string" },
+                        "Link": { "type": "string", "format": "uri" },
+                        "Severity": {
+                          "type": "string",
+                          "enum": ["Unknown", "Negligible", "Low", "Medium", "High", "Critical", "Defcon1"]
+                        },
+                        "FixedBy": { "type": "string" }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
