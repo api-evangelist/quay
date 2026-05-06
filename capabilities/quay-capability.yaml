@@ -1,0 +1,800 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Quay Container Registry API
+  description: The Quay API provides programmatic access to the Quay container image registry. Developers can manage repositories,
+    organizations, users, robot accounts, teams, builds, build triggers, tags, manifests, vulnerability scans, and access
+    permissions. The API supports the full lifecycle of container image distribution including image push and pull workflows,
+    automated build configuration via integrations with source code repositories, security scanning of stored images, and
+    fine-grained access control via OAuth tokens and robot account credentials. The API is available against Quay.io hosted
+    servic
+  tags:
+  - Quay
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: quay
+    baseUri: https://quay.io/api/v1
+    description: Quay Container Registry API HTTP API.
+    authentication:
+      type: bearer
+      token: '{{QUAY_TOKEN}}'
+    resources:
+    - name: repository
+      path: /repository
+      operations:
+      - name: listrepos
+        method: GET
+        description: List repositories
+        inputParameters:
+        - name: namespace
+          in: query
+          type: string
+        - name: public
+          in: query
+          type: boolean
+        - name: starred
+          in: query
+          type: boolean
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createrepo
+        method: POST
+        description: Create a new repository
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: repository-repository
+      path: /repository/{repository}
+      operations:
+      - name: getrepo
+        method: GET
+        description: Get repository details
+        inputParameters:
+        - name: repository
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleterepo
+        method: DELETE
+        description: Delete repository
+        inputParameters:
+        - name: repository
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: repository-repository-tag
+      path: /repository/{repository}/tag/
+      operations:
+      - name: listrepotags
+        method: GET
+        description: List repository tags
+        inputParameters:
+        - name: repository
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: repository-repository-tag-tag
+      path: /repository/{repository}/tag/{tag}
+      operations:
+      - name: changetag
+        method: PUT
+        description: Create or update a tag
+        inputParameters:
+        - name: repository
+          in: path
+          type: string
+          required: true
+        - name: tag
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deletetag
+        method: DELETE
+        description: Delete a tag
+        inputParameters:
+        - name: repository
+          in: path
+          type: string
+          required: true
+        - name: tag
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: repository-repository-manifest-manifestref
+      path: /repository/{repository}/manifest/{manifestref}
+      operations:
+      - name: getmanifest
+        method: GET
+        description: Get manifest by digest
+        inputParameters:
+        - name: repository
+          in: path
+          type: string
+          required: true
+        - name: manifestref
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: repository-repository-manifest-manifestref-secur
+      path: /repository/{repository}/manifest/{manifestref}/security
+      operations:
+      - name: getmanifestsecurity
+        method: GET
+        description: Get vulnerability scan results for a manifest
+        inputParameters:
+        - name: repository
+          in: path
+          type: string
+          required: true
+        - name: manifestref
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: repository-repository-build
+      path: /repository/{repository}/build/
+      operations:
+      - name: listrepobuilds
+        method: GET
+        description: List builds for a repository
+        inputParameters:
+        - name: repository
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: requestrepobuild
+        method: POST
+        description: Request a new build
+        inputParameters:
+        - name: repository
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: organization-orgname
+      path: /organization/{orgname}
+      operations:
+      - name: getorganization
+        method: GET
+        description: Get organization details
+        inputParameters:
+        - name: orgname
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: organization-orgname-team-teamname
+      path: /organization/{orgname}/team/{teamname}
+      operations:
+      - name: updateorganizationteam
+        method: PUT
+        description: Create or update a team
+        inputParameters:
+        - name: orgname
+          in: path
+          type: string
+          required: true
+        - name: teamname
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: organization-orgname-robots-robot-shortname
+      path: /organization/{orgname}/robots/{robot_shortname}
+      operations:
+      - name: createorgrobot
+        method: PUT
+        description: Create a robot account
+        inputParameters:
+        - name: orgname
+          in: path
+          type: string
+          required: true
+        - name: robot_shortname
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: user
+      path: /user/
+      operations:
+      - name: getloggedinuser
+        method: GET
+        description: Get authenticated user
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: repository-repository-permissions-user-username
+      path: /repository/{repository}/permissions/user/{username}
+      operations:
+      - name: changeuserpermissions
+        method: PUT
+        description: Set user repository permission
+        inputParameters:
+        - name: repository
+          in: path
+          type: string
+          required: true
+        - name: username
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: quay-rest
+    description: REST adapter for Quay Container Registry API.
+    resources:
+    - path: /repository
+      name: listrepos
+      operations:
+      - method: GET
+        name: listrepos
+        description: List repositories
+        call: quay.listrepos
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /repository
+      name: createrepo
+      operations:
+      - method: POST
+        name: createrepo
+        description: Create a new repository
+        call: quay.createrepo
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /repository/{repository}
+      name: getrepo
+      operations:
+      - method: GET
+        name: getrepo
+        description: Get repository details
+        call: quay.getrepo
+        with:
+          repository: rest.repository
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /repository/{repository}
+      name: deleterepo
+      operations:
+      - method: DELETE
+        name: deleterepo
+        description: Delete repository
+        call: quay.deleterepo
+        with:
+          repository: rest.repository
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /repository/{repository}/tag/
+      name: listrepotags
+      operations:
+      - method: GET
+        name: listrepotags
+        description: List repository tags
+        call: quay.listrepotags
+        with:
+          repository: rest.repository
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /repository/{repository}/tag/{tag}
+      name: changetag
+      operations:
+      - method: PUT
+        name: changetag
+        description: Create or update a tag
+        call: quay.changetag
+        with:
+          repository: rest.repository
+          tag: rest.tag
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /repository/{repository}/tag/{tag}
+      name: deletetag
+      operations:
+      - method: DELETE
+        name: deletetag
+        description: Delete a tag
+        call: quay.deletetag
+        with:
+          repository: rest.repository
+          tag: rest.tag
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /repository/{repository}/manifest/{manifestref}
+      name: getmanifest
+      operations:
+      - method: GET
+        name: getmanifest
+        description: Get manifest by digest
+        call: quay.getmanifest
+        with:
+          repository: rest.repository
+          manifestref: rest.manifestref
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /repository/{repository}/manifest/{manifestref}/security
+      name: getmanifestsecurity
+      operations:
+      - method: GET
+        name: getmanifestsecurity
+        description: Get vulnerability scan results for a manifest
+        call: quay.getmanifestsecurity
+        with:
+          repository: rest.repository
+          manifestref: rest.manifestref
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /repository/{repository}/build/
+      name: listrepobuilds
+      operations:
+      - method: GET
+        name: listrepobuilds
+        description: List builds for a repository
+        call: quay.listrepobuilds
+        with:
+          repository: rest.repository
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /repository/{repository}/build/
+      name: requestrepobuild
+      operations:
+      - method: POST
+        name: requestrepobuild
+        description: Request a new build
+        call: quay.requestrepobuild
+        with:
+          repository: rest.repository
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /organization/{orgname}
+      name: getorganization
+      operations:
+      - method: GET
+        name: getorganization
+        description: Get organization details
+        call: quay.getorganization
+        with:
+          orgname: rest.orgname
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /organization/{orgname}/team/{teamname}
+      name: updateorganizationteam
+      operations:
+      - method: PUT
+        name: updateorganizationteam
+        description: Create or update a team
+        call: quay.updateorganizationteam
+        with:
+          orgname: rest.orgname
+          teamname: rest.teamname
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /organization/{orgname}/robots/{robot_shortname}
+      name: createorgrobot
+      operations:
+      - method: PUT
+        name: createorgrobot
+        description: Create a robot account
+        call: quay.createorgrobot
+        with:
+          orgname: rest.orgname
+          robot_shortname: rest.robot_shortname
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /user/
+      name: getloggedinuser
+      operations:
+      - method: GET
+        name: getloggedinuser
+        description: Get authenticated user
+        call: quay.getloggedinuser
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /repository/{repository}/permissions/user/{username}
+      name: changeuserpermissions
+      operations:
+      - method: PUT
+        name: changeuserpermissions
+        description: Set user repository permission
+        call: quay.changeuserpermissions
+        with:
+          repository: rest.repository
+          username: rest.username
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: quay-mcp
+    transport: http
+    description: MCP adapter for Quay Container Registry API for AI agent use.
+    tools:
+    - name: listrepos
+      description: List repositories
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: quay.listrepos
+      with:
+        namespace: tools.namespace
+        public: tools.public
+        starred: tools.starred
+      inputParameters:
+      - name: namespace
+        type: string
+        description: namespace
+      - name: public
+        type: boolean
+        description: public
+      - name: starred
+        type: boolean
+        description: starred
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createrepo
+      description: Create a new repository
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: quay.createrepo
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getrepo
+      description: Get repository details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: quay.getrepo
+      with:
+        repository: tools.repository
+      inputParameters:
+      - name: repository
+        type: string
+        description: repository
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deleterepo
+      description: Delete repository
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: quay.deleterepo
+      with:
+        repository: tools.repository
+      inputParameters:
+      - name: repository
+        type: string
+        description: repository
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listrepotags
+      description: List repository tags
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: quay.listrepotags
+      with:
+        repository: tools.repository
+      inputParameters:
+      - name: repository
+        type: string
+        description: repository
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: changetag
+      description: Create or update a tag
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: quay.changetag
+      with:
+        repository: tools.repository
+        tag: tools.tag
+      inputParameters:
+      - name: repository
+        type: string
+        description: repository
+        required: true
+      - name: tag
+        type: string
+        description: tag
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deletetag
+      description: Delete a tag
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: quay.deletetag
+      with:
+        repository: tools.repository
+        tag: tools.tag
+      inputParameters:
+      - name: repository
+        type: string
+        description: repository
+        required: true
+      - name: tag
+        type: string
+        description: tag
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getmanifest
+      description: Get manifest by digest
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: quay.getmanifest
+      with:
+        repository: tools.repository
+        manifestref: tools.manifestref
+      inputParameters:
+      - name: repository
+        type: string
+        description: repository
+        required: true
+      - name: manifestref
+        type: string
+        description: manifestref
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getmanifestsecurity
+      description: Get vulnerability scan results for a manifest
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: quay.getmanifestsecurity
+      with:
+        repository: tools.repository
+        manifestref: tools.manifestref
+      inputParameters:
+      - name: repository
+        type: string
+        description: repository
+        required: true
+      - name: manifestref
+        type: string
+        description: manifestref
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listrepobuilds
+      description: List builds for a repository
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: quay.listrepobuilds
+      with:
+        repository: tools.repository
+      inputParameters:
+      - name: repository
+        type: string
+        description: repository
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: requestrepobuild
+      description: Request a new build
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: quay.requestrepobuild
+      with:
+        repository: tools.repository
+      inputParameters:
+      - name: repository
+        type: string
+        description: repository
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getorganization
+      description: Get organization details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: quay.getorganization
+      with:
+        orgname: tools.orgname
+      inputParameters:
+      - name: orgname
+        type: string
+        description: orgname
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updateorganizationteam
+      description: Create or update a team
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: quay.updateorganizationteam
+      with:
+        orgname: tools.orgname
+        teamname: tools.teamname
+      inputParameters:
+      - name: orgname
+        type: string
+        description: orgname
+        required: true
+      - name: teamname
+        type: string
+        description: teamname
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createorgrobot
+      description: Create a robot account
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: quay.createorgrobot
+      with:
+        orgname: tools.orgname
+        robot_shortname: tools.robot_shortname
+      inputParameters:
+      - name: orgname
+        type: string
+        description: orgname
+        required: true
+      - name: robot_shortname
+        type: string
+        description: robot_shortname
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getloggedinuser
+      description: Get authenticated user
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: quay.getloggedinuser
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: changeuserpermissions
+      description: Set user repository permission
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: quay.changeuserpermissions
+      with:
+        repository: tools.repository
+        username: tools.username
+      inputParameters:
+      - name: repository
+        type: string
+        description: repository
+        required: true
+      - name: username
+        type: string
+        description: username
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+binds:
+- namespace: env
+  keys:
+    QUAY_TOKEN: QUAY_TOKEN
