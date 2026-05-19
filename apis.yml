@@ -13,7 +13,7 @@ tags:
 url: >-
   https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/apis.yml
 created: '2026-03-26'
-modified: '2026-04-28'
+modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
   - aid: quay:quay
@@ -61,6 +61,9 @@ common:
     url: https://quay.io/signin/
   - type: Support
     url: https://access.redhat.com/products/red-hat-quay/
+  - name: MCP Server
+    url: https://github.com/quay/quay-mcp-server
+    type: MCPServer
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
