@@ -1,0 +1,85 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Quay Container Registry API — Permission
+  description: 'Quay Container Registry API — Permission. 1 operations. Lead operation: Set user repository permission. Self-contained
+    Naftiko capability covering one Quay business surface.'
+  tags:
+  - Quay
+  - Permission
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    QUAY_API_KEY: QUAY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: quay-permission
+    baseUri: https://quay.io/api/v1
+    description: Quay Container Registry API — Permission business capability. Self-contained, no shared references.
+    resources:
+    - name: repository-repository-permissions-user-username
+      path: /repository/{repository}/permissions/user/{username}
+      operations:
+      - name: changeuserpermissions
+        method: PUT
+        description: Set user repository permission
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: repository
+          in: path
+          type: string
+          required: true
+        - name: username
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.QUAY_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: quay-permission-rest
+    port: 8080
+    description: REST adapter for Quay Container Registry API — Permission. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/repository/{repository}/permissions/user/{username}
+      name: repository-repository-permissions-user-username
+      description: REST surface for repository-repository-permissions-user-username.
+      operations:
+      - method: PUT
+        name: changeuserpermissions
+        description: Set user repository permission
+        call: quay-permission.changeuserpermissions
+        with:
+          repository: rest.repository
+          username: rest.username
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: quay-permission-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Quay Container Registry API — Permission. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: set-user-repository-permission
+      description: Set user repository permission
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: quay-permission.changeuserpermissions
+      with:
+        repository: tools.repository
+        username: tools.username
+      outputParameters:
+      - type: object
+        mapping: $.

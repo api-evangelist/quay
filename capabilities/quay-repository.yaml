@@ -1,0 +1,198 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Quay Container Registry API — Repository
+  description: 'Quay Container Registry API — Repository. 4 operations. Lead operation: List repositories. Self-contained
+    Naftiko capability covering one Quay business surface.'
+  tags:
+  - Quay
+  - Repository
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    QUAY_API_KEY: QUAY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: quay-repository
+    baseUri: https://quay.io/api/v1
+    description: Quay Container Registry API — Repository business capability. Self-contained, no shared references.
+    resources:
+    - name: repository
+      path: /repository
+      operations:
+      - name: listrepos
+        method: GET
+        description: List repositories
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: namespace
+          in: query
+          type: string
+        - name: public
+          in: query
+          type: boolean
+        - name: starred
+          in: query
+          type: boolean
+      - name: createrepo
+        method: POST
+        description: Create a new repository
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: repository-repository
+      path: /repository/{repository}
+      operations:
+      - name: getrepo
+        method: GET
+        description: Get repository details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: repository
+          in: path
+          type: string
+          required: true
+      - name: deleterepo
+        method: DELETE
+        description: Delete repository
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: repository
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.QUAY_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: quay-repository-rest
+    port: 8080
+    description: REST adapter for Quay Container Registry API — Repository. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/repository
+      name: repository
+      description: REST surface for repository.
+      operations:
+      - method: GET
+        name: listrepos
+        description: List repositories
+        call: quay-repository.listrepos
+        with:
+          namespace: rest.namespace
+          public: rest.public
+          starred: rest.starred
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createrepo
+        description: Create a new repository
+        call: quay-repository.createrepo
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/repository/{repository}
+      name: repository-repository
+      description: REST surface for repository-repository.
+      operations:
+      - method: GET
+        name: getrepo
+        description: Get repository details
+        call: quay-repository.getrepo
+        with:
+          repository: rest.repository
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleterepo
+        description: Delete repository
+        call: quay-repository.deleterepo
+        with:
+          repository: rest.repository
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: quay-repository-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Quay Container Registry API — Repository. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: list-repositories
+      description: List repositories
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: quay-repository.listrepos
+      with:
+        namespace: tools.namespace
+        public: tools.public
+        starred: tools.starred
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-new-repository
+      description: Create a new repository
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: quay-repository.createrepo
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-repository-details
+      description: Get repository details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: quay-repository.getrepo
+      with:
+        repository: tools.repository
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-repository
+      description: Delete repository
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: quay-repository.deleterepo
+      with:
+        repository: tools.repository
+      outputParameters:
+      - type: object
+        mapping: $.
