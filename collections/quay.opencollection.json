@@ -1,0 +1,425 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Quay Container Registry API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://quay.io/oauth/authorize",
+      "accessTokenUrl": "https://quay.io/oauth/access_token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Repository",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List repositories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://quay.io/api/v1/repository",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "public",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "starred",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List repositories visible to the authenticated user with optional filters."
+        },
+        {
+          "info": {
+            "name": "Create a new repository",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://quay.io/api/v1/repository",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new repository"
+        },
+        {
+          "info": {
+            "name": "Get repository details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://quay.io/api/v1/repository/:repository",
+            "params": [
+              {
+                "name": "repository",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get repository details"
+        },
+        {
+          "info": {
+            "name": "Delete repository",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://quay.io/api/v1/repository/:repository",
+            "params": [
+              {
+                "name": "repository",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete repository"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Tag",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List repository tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://quay.io/api/v1/repository/:repository/tag/",
+            "params": [
+              {
+                "name": "repository",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List repository tags"
+        },
+        {
+          "info": {
+            "name": "Create or update a tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://quay.io/api/v1/repository/:repository/tag/:tag",
+            "params": [
+              {
+                "name": "repository",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "tag",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Create or update a tag"
+        },
+        {
+          "info": {
+            "name": "Delete a tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://quay.io/api/v1/repository/:repository/tag/:tag",
+            "params": [
+              {
+                "name": "repository",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "tag",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a tag"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Manifest",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get manifest by digest",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://quay.io/api/v1/repository/:repository/manifest/:manifestref",
+            "params": [
+              {
+                "name": "repository",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "manifestref",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get manifest by digest"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Security",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get vulnerability scan results for a manifest",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://quay.io/api/v1/repository/:repository/manifest/:manifestref/security",
+            "params": [
+              {
+                "name": "repository",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "manifestref",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get vulnerability scan results for a manifest"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Build",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List builds for a repository",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://quay.io/api/v1/repository/:repository/build/",
+            "params": [
+              {
+                "name": "repository",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List builds for a repository"
+        },
+        {
+          "info": {
+            "name": "Request a new build",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://quay.io/api/v1/repository/:repository/build/",
+            "params": [
+              {
+                "name": "repository",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Request a new build"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Organization",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get organization details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://quay.io/api/v1/organization/:orgname",
+            "params": [
+              {
+                "name": "orgname",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get organization details"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Team",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create or update a team",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://quay.io/api/v1/organization/:orgname/team/:teamname",
+            "params": [
+              {
+                "name": "orgname",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "teamname",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Create or update a team"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Robot",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a robot account",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://quay.io/api/v1/organization/:orgname/robots/:robot_shortname",
+            "params": [
+              {
+                "name": "orgname",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "robot_shortname",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Create a robot account"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "User",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get authenticated user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://quay.io/api/v1/user/"
+          },
+          "docs": "Get authenticated user"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Permission",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Set user repository permission",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://quay.io/api/v1/repository/:repository/permissions/user/:username",
+            "params": [
+              {
+                "name": "repository",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "username",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Set user repository permission"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
