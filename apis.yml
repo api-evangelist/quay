@@ -60,7 +60,7 @@ common:
     url: https://quay.io/plans/
   - type: Blog
     url: https://www.redhat.com/en/blog
-  - type: SignUp
+  - type: Signup
     url: https://quay.io/signin/
   - type: Support
     url: https://access.redhat.com/products/red-hat-quay/
