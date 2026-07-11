@@ -1,0 +1,47 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/quay-openapi.yml
+schemes:
+- name: OAuth2
+  source: openapi/quay-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://quay.io/oauth/authorize
+    tokenUrl: https://quay.io/oauth/access_token
+scopes:
+- scope: org:admin
+  description: Administer organizations
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/quay-openapi.yml
+- scope: repo:admin
+  description: Administer repositories
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/quay-openapi.yml
+- scope: repo:read
+  description: Read repositories
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/quay-openapi.yml
+- scope: repo:write
+  description: Write repositories
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/quay-openapi.yml
+- scope: user:admin
+  description: Administer the user
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/quay-openapi.yml
+- scope: user:read
+  description: Read user info
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/quay-openapi.yml
