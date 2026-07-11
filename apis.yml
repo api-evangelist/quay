@@ -48,6 +48,8 @@ apis:
         url: >-
           https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-schema/quay-manifest-security-schema.json
 common:
+  - type: DomainSecurity
+    url: security/quay-domain-security.yml
   - type: Authentication
     url: authentication/quay-authentication.yml
   - type: OAuthScopes
