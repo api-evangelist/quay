@@ -1,0 +1,56 @@
+openapi: 3.1.0
+info:
+  title: Quay Container Registry Build Team API
+  description: The Quay API provides programmatic access to the Quay container image registry. Developers can manage repositories, organizations, users, robot accounts, teams, builds, build triggers, tags, manifests, vulnerability scans, and access permissions. The API supports the full lifecycle of container image distribution including image push and pull workflows, automated build configuration via integrations with source code repositories, security scanning of stored images, and fine-grained access control via OAuth tokens and robot account credentials. The API is available against Quay.io hosted service and on Red Hat Quay self-hosted installations through the same /api/v1 surface.
+  version: 1.0.0
+  contact:
+    name: Red Hat Quay Support
+    url: https://access.redhat.com/products/red-hat-quay/
+  termsOfService: https://quay.io/tos
+servers:
+- url: https://quay.io/api/v1
+  description: Quay.io hosted production server
+security:
+- OAuth2: []
+tags:
+- name: Team
+  description: Manage organization teams, team membership, team roles, and team permissions on repositories.
+paths:
+  /organization/{orgname}/team/{teamname}:
+    put:
+      tags:
+      - Team
+      summary: Create or update a team
+      operationId: updateOrganizationTeam
+      parameters:
+      - name: orgname
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: teamname
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Team updated
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://quay.io/oauth/authorize
+          tokenUrl: https://quay.io/oauth/access_token
+          scopes:
+            repo:read: Read repositories
+            repo:write: Write repositories
+            repo:admin: Administer repositories
+            org:admin: Administer organizations
+            user:read: Read user info
+            user:admin: Administer the user
+externalDocs:
+  description: Quay API Explorer and Documentation
+  url: https://docs.quay.io/api/
