@@ -5,7 +5,20 @@ description: >-
   built-in security scanning, access controls, and automated build triggers. Available as a hosted service at Quay.io or
   as a self-hosted solution through Red Hat Quay.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/quay.png
 tags:
   - Container Images
   - Containers
@@ -17,36 +30,292 @@ created: '2026-03-26'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: quay:quay
-    name: Quay
-    description: >-
-      Quay is a container image registry that enables you to build, store, distribute, and deploy container images with
-      built-in security scanning, access controls, and automated build triggers.
-    humanURL: https://quay.io/
-    baseURL: https://quay.io/api/v1
-    tags:
-      - Container Images
-      - Containers
-      - Registry
-      - Security Scanning
-    properties:
-      - type: Documentation
-        url: https://docs.quay.io/
-      - type: GettingStarted
-        url: https://docs.quay.io/guides/
-      - type: Pricing
-        url: https://quay.io/plans/
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/openapi/quay-openapi.yml
-      - type: JSONLD
-        url: https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-ld/quay-context.jsonld
-      - type: JSONSchema
-        url: https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-schema/quay-repository-schema.json
-      - type: JSONSchema
-        url: https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-schema/quay-tag-schema.json
-      - type: JSONSchema
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-schema/quay-manifest-security-schema.json
+- aid: quay:quay-build-api
+  name: Quay Build API
+  description: Manage Dockerfile builds, build logs, build triggers, and build configuration.
+  humanURL: https://quay.io/
+  baseURL: https://quay.io/api/v1
+  tags:
+  - Build
+  properties:
+  - type: OpenAPI
+    url: openapi/quay-build-api-openapi.yml
+  - type: Documentation
+    url: https://docs.quay.io/
+  - type: GettingStarted
+    url: https://docs.quay.io/guides/
+  - type: Pricing
+    url: https://quay.io/plans/
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-ld/quay-context.jsonld
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-schema/quay-repository-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-schema/quay-tag-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-schema/quay-manifest-security-schema.json
+- aid: quay:quay-manifest-api
+  name: Quay Manifest API
+  description: Inspect image manifests, manifest layers, and labels associated with a pushed image.
+  humanURL: https://quay.io/
+  baseURL: https://quay.io/api/v1
+  tags:
+  - Manifest
+  properties:
+  - type: OpenAPI
+    url: openapi/quay-manifest-api-openapi.yml
+  - type: Documentation
+    url: https://docs.quay.io/
+  - type: GettingStarted
+    url: https://docs.quay.io/guides/
+  - type: Pricing
+    url: https://quay.io/plans/
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-ld/quay-context.jsonld
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-schema/quay-repository-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-schema/quay-tag-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-schema/quay-manifest-security-schema.json
+- aid: quay:quay-organization-api
+  name: Quay Organization API
+  description: >-
+    Manage Quay organizations, organization members, billing, application tokens, and organization-wide
+    settings.
+  humanURL: https://quay.io/
+  baseURL: https://quay.io/api/v1
+  tags:
+  - Organization
+  properties:
+  - type: OpenAPI
+    url: openapi/quay-organization-api-openapi.yml
+  - type: Documentation
+    url: https://docs.quay.io/
+  - type: GettingStarted
+    url: https://docs.quay.io/guides/
+  - type: Pricing
+    url: https://quay.io/plans/
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-ld/quay-context.jsonld
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-schema/quay-repository-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-schema/quay-tag-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-schema/quay-manifest-security-schema.json
+- aid: quay:quay-permission-api
+  name: Quay Permission API
+  description: Manage user and team permissions on repositories.
+  humanURL: https://quay.io/
+  baseURL: https://quay.io/api/v1
+  tags:
+  - Permission
+  properties:
+  - type: OpenAPI
+    url: openapi/quay-permission-api-openapi.yml
+  - type: Documentation
+    url: https://docs.quay.io/
+  - type: GettingStarted
+    url: https://docs.quay.io/guides/
+  - type: Pricing
+    url: https://quay.io/plans/
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-ld/quay-context.jsonld
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-schema/quay-repository-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-schema/quay-tag-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-schema/quay-manifest-security-schema.json
+- aid: quay:quay-repository-api
+  name: Quay Repository API
+  description: >-
+    Manage container image repositories including create, list, update, delete, visibility, descriptions,
+    and metadata.
+  humanURL: https://quay.io/
+  baseURL: https://quay.io/api/v1
+  tags:
+  - Repository
+  properties:
+  - type: OpenAPI
+    url: openapi/quay-repository-api-openapi.yml
+  - type: Documentation
+    url: https://docs.quay.io/
+  - type: GettingStarted
+    url: https://docs.quay.io/guides/
+  - type: Pricing
+    url: https://quay.io/plans/
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-ld/quay-context.jsonld
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-schema/quay-repository-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-schema/quay-tag-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-schema/quay-manifest-security-schema.json
+- aid: quay:quay-robot-api
+  name: Quay Robot API
+  description: >-
+    Manage robot accounts used for automated repository access including credentials and permissions.
+  humanURL: https://quay.io/
+  baseURL: https://quay.io/api/v1
+  tags:
+  - Robot
+  properties:
+  - type: OpenAPI
+    url: openapi/quay-robot-api-openapi.yml
+  - type: Documentation
+    url: https://docs.quay.io/
+  - type: GettingStarted
+    url: https://docs.quay.io/guides/
+  - type: Pricing
+    url: https://quay.io/plans/
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-ld/quay-context.jsonld
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-schema/quay-repository-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-schema/quay-tag-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-schema/quay-manifest-security-schema.json
+- aid: quay:quay-security-api
+  name: Quay Security API
+  description: Retrieve vulnerability scan results for repository images.
+  humanURL: https://quay.io/
+  baseURL: https://quay.io/api/v1
+  tags:
+  - Security
+  properties:
+  - type: OpenAPI
+    url: openapi/quay-security-api-openapi.yml
+  - type: Documentation
+    url: https://docs.quay.io/
+  - type: GettingStarted
+    url: https://docs.quay.io/guides/
+  - type: Pricing
+    url: https://quay.io/plans/
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-ld/quay-context.jsonld
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-schema/quay-repository-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-schema/quay-tag-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-schema/quay-manifest-security-schema.json
+- aid: quay:quay-tag-api
+  name: Quay Tag API
+  description: Manage repository image tags including listing, restoring, expiring, and deleting tags.
+  humanURL: https://quay.io/
+  baseURL: https://quay.io/api/v1
+  tags:
+  - Tag
+  properties:
+  - type: OpenAPI
+    url: openapi/quay-tag-api-openapi.yml
+  - type: Documentation
+    url: https://docs.quay.io/
+  - type: GettingStarted
+    url: https://docs.quay.io/guides/
+  - type: Pricing
+    url: https://quay.io/plans/
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-ld/quay-context.jsonld
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-schema/quay-repository-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-schema/quay-tag-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-schema/quay-manifest-security-schema.json
+- aid: quay:quay-team-api
+  name: Quay Team API
+  description: >-
+    Manage organization teams, team membership, team roles, and team permissions on repositories.
+  humanURL: https://quay.io/
+  baseURL: https://quay.io/api/v1
+  tags:
+  - Team
+  properties:
+  - type: OpenAPI
+    url: openapi/quay-team-api-openapi.yml
+  - type: Documentation
+    url: https://docs.quay.io/
+  - type: GettingStarted
+    url: https://docs.quay.io/guides/
+  - type: Pricing
+    url: https://quay.io/plans/
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-ld/quay-context.jsonld
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-schema/quay-repository-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-schema/quay-tag-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-schema/quay-manifest-security-schema.json
+- aid: quay:quay-user-api
+  name: Quay User API
+  description: Manage Quay user accounts, profile, starred repositories, and personal OAuth tokens.
+  humanURL: https://quay.io/
+  baseURL: https://quay.io/api/v1
+  tags:
+  - User
+  properties:
+  - type: OpenAPI
+    url: openapi/quay-user-api-openapi.yml
+  - type: Documentation
+    url: https://docs.quay.io/
+  - type: GettingStarted
+    url: https://docs.quay.io/guides/
+  - type: Pricing
+    url: https://quay.io/plans/
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-ld/quay-context.jsonld
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-schema/quay-repository-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-schema/quay-tag-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-schema/quay-manifest-security-schema.json
 common:
   - type: AgenticAccess
     url: agentic-access/quay-agentic-access.yml
