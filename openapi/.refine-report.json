@@ -1,0 +1,32 @@
+{
+  "provider": "quay",
+  "sources": [
+    "quay-build-api-openapi.yml",
+    "quay-manifest-api-openapi.yml",
+    "quay-organization-api-openapi.yml",
+    "quay-permission-api-openapi.yml",
+    "quay-repository-api-openapi.yml",
+    "quay-robot-api-openapi.yml",
+    "quay-security-api-openapi.yml",
+    "quay-tag-api-openapi.yml",
+    "quay-team-api-openapi.yml",
+    "quay-user-api-openapi.yml"
+  ],
+  "outputs": [
+    "quay-build-api-openapi.yml",
+    "quay-manifest-api-openapi.yml",
+    "quay-organization-api-openapi.yml",
+    "quay-permission-api-openapi.yml",
+    "quay-repository-api-openapi.yml",
+    "quay-robot-api-openapi.yml",
+    "quay-security-api-openapi.yml",
+    "quay-tag-api-openapi.yml",
+    "quay-team-api-openapi.yml",
+    "quay-user-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
