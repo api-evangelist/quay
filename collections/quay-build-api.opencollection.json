@@ -1,0 +1,66 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Quay Container Registry Build API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://quay.io/oauth/authorize",
+      "accessTokenUrl": "https://quay.io/oauth/access_token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Build",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List builds for a repository",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://quay.io/api/v1/repository/:repository/build/",
+            "params": [
+              {
+                "name": "repository",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List builds for a repository"
+        },
+        {
+          "info": {
+            "name": "Request a new build",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://quay.io/api/v1/repository/:repository/build/",
+            "params": [
+              {
+                "name": "repository",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Request a new build"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

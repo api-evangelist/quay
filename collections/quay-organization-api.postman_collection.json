@@ -1,0 +1,136 @@
+{
+  "item": [
+    {
+      "id": "74d4d514-9916-45e0-81f4-9e6fa1fa72ca",
+      "name": "Organization",
+      "description": {
+        "content": "Manage Quay organizations, organization members, billing, application tokens, and organization-wide settings.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dce35168-6874-4ffb-965a-d54ee9b91eb4",
+          "name": "Get organization details",
+          "request": {
+            "name": "Get organization details",
+            "description": {},
+            "url": {
+              "path": [
+                "organization",
+                ":orgname"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orgname",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4e14252d-380a-4e85-9539-186bc1b99bc8",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organization",
+                    ":orgname"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgname",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://quay.io/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "repo:read repo:write repo:admin org:admin user:read user:admin"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://quay.io/oauth/access_token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://quay.io/oauth/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5a97b0b1-9233-44da-b5ac-1b4754865621",
+    "name": "Quay Container Registry Build Organization API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Quay API provides programmatic access to the Quay container image registry. Developers can manage repositories, organizations, users, robot accounts, teams, builds, build triggers, tags, manifests, vulnerability scans, and access permissions. The API supports the full lifecycle of container image distribution including image push and pull workflows, automated build configuration via integrations with source code repositories, security scanning of stored images, and fine-grained access control via OAuth tokens and robot account credentials. The API is available against Quay.io hosted service and on Red Hat Quay self-hosted installations through the same /api/v1 surface.\n\nContact Support:\n Name: Red Hat Quay Support",
+      "type": "text/plain"
+    }
+  }
+}

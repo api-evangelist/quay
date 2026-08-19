@@ -1,0 +1,53 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Quay Container Registry Build Team API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://quay.io/oauth/authorize",
+      "accessTokenUrl": "https://quay.io/oauth/access_token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Team",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create or update a team",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://quay.io/api/v1/organization/:orgname/team/:teamname",
+            "params": [
+              {
+                "name": "orgname",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "teamname",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Create or update a team"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

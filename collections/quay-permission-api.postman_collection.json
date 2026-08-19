@@ -1,0 +1,156 @@
+{
+  "item": [
+    {
+      "id": "84b1bcdb-d1c8-4a0d-99a1-5f907a7c70fa",
+      "name": "Permission",
+      "description": {
+        "content": "Manage user and team permissions on repositories.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "085de855-24f3-403f-b5f4-841af16a6523",
+          "name": "Set user repository permission",
+          "request": {
+            "name": "Set user repository permission",
+            "description": {},
+            "url": {
+              "path": [
+                "repository",
+                ":repository",
+                "permissions",
+                "user",
+                ":username"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repository",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "username",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4e9b9fad-bf63-4762-9a5d-fbf16f8170ce",
+              "name": "Permission updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repository",
+                    ":repository",
+                    "permissions",
+                    "user",
+                    ":username"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repository",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "username",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://quay.io/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "repo:read repo:write repo:admin org:admin user:read user:admin"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://quay.io/oauth/access_token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://quay.io/oauth/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8ef22315-855a-4438-9b42-219a49ac5e2d",
+    "name": "Quay Container Registry Build Permission API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Quay API provides programmatic access to the Quay container image registry. Developers can manage repositories, organizations, users, robot accounts, teams, builds, build triggers, tags, manifests, vulnerability scans, and access permissions. The API supports the full lifecycle of container image distribution including image push and pull workflows, automated build configuration via integrations with source code repositories, security scanning of stored images, and fine-grained access control via OAuth tokens and robot account credentials. The API is available against Quay.io hosted service and on Red Hat Quay self-hosted installations through the same /api/v1 surface.\n\nContact Support:\n Name: Red Hat Quay Support",
+      "type": "text/plain"
+    }
+  }
+}

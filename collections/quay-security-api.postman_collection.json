@@ -1,0 +1,156 @@
+{
+  "item": [
+    {
+      "id": "edcdad56-47b4-45d1-91e5-918064a2be36",
+      "name": "Security",
+      "description": {
+        "content": "Retrieve vulnerability scan results for repository images.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "05d7d4cf-b7b8-4312-8ece-85a5d962f0ba",
+          "name": "Get vulnerability scan results for a manifest",
+          "request": {
+            "name": "Get vulnerability scan results for a manifest",
+            "description": {},
+            "url": {
+              "path": [
+                "repository",
+                ":repository",
+                "manifest",
+                ":manifestref",
+                "security"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repository",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "manifestref",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4483d2e3-46e3-472c-871b-5a93e56400dc",
+              "name": "Vulnerability scan results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "repository",
+                    ":repository",
+                    "manifest",
+                    ":manifestref",
+                    "security"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repository",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "manifestref",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://quay.io/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "repo:read repo:write repo:admin org:admin user:read user:admin"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://quay.io/oauth/access_token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://quay.io/oauth/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "25c77e41-a114-4e1f-8c01-03f40aecb587",
+    "name": "Quay Container Registry Build Security API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Quay API provides programmatic access to the Quay container image registry. Developers can manage repositories, organizations, users, robot accounts, teams, builds, build triggers, tags, manifests, vulnerability scans, and access permissions. The API supports the full lifecycle of container image distribution including image push and pull workflows, automated build configuration via integrations with source code repositories, security scanning of stored images, and fine-grained access control via OAuth tokens and robot account credentials. The API is available against Quay.io hosted service and on Red Hat Quay self-hosted installations through the same /api/v1 surface.\n\nContact Support:\n Name: Red Hat Quay Support",
+      "type": "text/plain"
+    }
+  }
+}

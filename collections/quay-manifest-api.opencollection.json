@@ -1,0 +1,53 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Quay Container Registry Build Manifest API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://quay.io/oauth/authorize",
+      "accessTokenUrl": "https://quay.io/oauth/access_token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Manifest",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get manifest by digest",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://quay.io/api/v1/repository/:repository/manifest/:manifestref",
+            "params": [
+              {
+                "name": "repository",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "manifestref",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get manifest by digest"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
