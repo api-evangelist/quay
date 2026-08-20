@@ -36,6 +36,8 @@ apis:
   humanURL: https://quay.io/
   baseURL: https://quay.io/api/v1
   tags:
+  - Builds
+  tags_raw:
   - Build
   properties:
   - type: OpenAPI
@@ -64,6 +66,8 @@ apis:
   humanURL: https://quay.io/
   baseURL: https://quay.io/api/v1
   tags:
+  - Manifests
+  tags_raw:
   - Manifest
   properties:
   - type: OpenAPI
