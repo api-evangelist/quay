@@ -78,7 +78,7 @@ apis:
   humanURL: https://quay.io/
   baseURL: https://quay.io/api/v1
   tags:
-  - Manifests
+  - Manifest
   tags_raw:
   - Manifest
   properties:
