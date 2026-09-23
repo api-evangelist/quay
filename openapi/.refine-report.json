@@ -1,16 +1,7 @@
 {
   "provider": "quay",
   "sources": [
-    "quay-build-api-openapi.yml",
-    "quay-manifest-api-openapi.yml",
-    "quay-organization-api-openapi.yml",
-    "quay-permission-api-openapi.yml",
-    "quay-repository-api-openapi.yml",
-    "quay-robot-api-openapi.yml",
-    "quay-security-api-openapi.yml",
-    "quay-tag-api-openapi.yml",
-    "quay-team-api-openapi.yml",
-    "quay-user-api-openapi.yml"
+    "_original/quay-openapi.yml"
   ],
   "outputs": [
     "quay-build-api-openapi.yml",
@@ -27,6 +18,21 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "quay-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "quay-build-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "quay-manifest-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "quay-organization-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "quay-permission-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "quay-repository-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "quay-robot-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "quay-security-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "quay-tag-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "quay-team-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "quay-user-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
