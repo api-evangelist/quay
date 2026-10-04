@@ -333,6 +333,9 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-schema/quay-manifest-security-schema.json
 common:
+  - type: CapabilityMap
+    url: capabilities/quay-capability-edges.yml
+    name: Quay Business Capability Map
   - type: AgenticAccess
     url: agentic-access/quay-agentic-access.yml
   - type: DomainSecurity

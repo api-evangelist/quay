@@ -1,0 +1,45 @@
+slug: quay
+provider: Quay
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 3
+edges:
+- tag: Security
+  spec_file: quay-security-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.82
+  evidence: GET /repository/{repository}/manifest/{manifestref}/security — "Get vulnerability scan results
+    for a manifest"
+  reason: The single operation returns container image vulnerability scan results, which is vulnerability
+    scanning/identification — Vulnerability Management rather than any broader security governance.
+- tag: Build
+  spec_file: quay-build-api-openapi.yml
+  capability_id: BC-4210.10
+  capability_id_l1: BC-4210
+  capability_name: Continuous Integration Management
+  confidence: 0.8
+  evidence: POST /repository/{repository}/build/  requestRepoBuild  Request a new build; GET .../build/
+    listRepoBuilds
+  reason: Triggering and listing container image builds is build-pipeline and artefact production, i.e.
+    Continuous Integration Management. Vendor also cites "automated build triggers".
+- tag: Permission
+  spec_file: quay-permission-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.78
+  evidence: PUT /repository/{repository}/permissions/user/{username}  changeUserPermissions  Set user
+    repository permission
+  reason: Granting and changing a user's permissions on a resource is access control administration, i.e.
+    Identity & Access Management. Vendor description also cites "access controls".
