@@ -1,0 +1,12 @@
+fetched: '2026-10-13'
+method: fetched
+source: https://raw.githubusercontent.com/quay/quay/master/README.md
+page: https://raw.githubusercontent.com/quay/quay/master/README.md
+file: quay-oci-distribution-1.md
+bytes: 5177
+sha256: d83e515aa59d405cf92a3db65a88d0446ba28bbe7b4217bee568c6940a58dc57
+anchor: open-container-initiative
+shape: oci-distribution
+classification: declares-compatibility
+quote: '- OCI spec v1.1 support [oci]'
+note: text extracted from the provider's own page (tags stripped), saved for evidence
