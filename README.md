@@ -1,4 +1,4 @@
-# Quay (quay)
+# Quay
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,67 +66,171 @@
 
 Quay is a container image registry that enables you to build, store, distribute, and deploy container images with built-in security scanning, access controls, and automated build triggers. Available as a hosted service at Quay.io or as a self-hosted solution through Red Hat Quay.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/apis.yml)
+**Areas:** Container Images · Containers · Red Hat · Registry · Security Scanning
 
-## Scope
+## Quay on APIs.io
 
-- **Type:** Index
+Everything profiled for Quay is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/quay/](https://apis.io/providers/quay/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (10)
 
-- Container Images
-- Containers
-- Red Hat
-- Registry
-- Security Scanning
+- [Quay Build API](https://apis.io/apis/quay/quay-build-api/) — Manage Dockerfile builds, build logs, build triggers, and build configuration.
+- [Quay Manifest API](https://apis.io/apis/quay/quay-manifest-api/) — Inspect image manifests, manifest layers, and labels associated with a pushed image.
+- [Quay Organization API](https://apis.io/apis/quay/quay-organization-api/) — Manage Quay organizations, organization members, billing, application tokens, and organization-wide settings.
+- [Quay Permission API](https://apis.io/apis/quay/quay-permission-api/) — Manage user and team permissions on repositories.
+- [Quay Repository API](https://apis.io/apis/quay/quay-repository-api/) — Manage container image repositories including create, list, update, delete, visibility, descriptions, and metadata.
+- [Quay Robot API](https://apis.io/apis/quay/quay-robot-api/) — Manage robot accounts used for automated repository access including credentials and permissions.
+- [Quay Security API](https://apis.io/apis/quay/quay-security-api/) — Retrieve vulnerability scan results for repository images.
+- [Quay Tag API](https://apis.io/apis/quay/quay-tag-api/) — Manage repository image tags including listing, restoring, expiring, and deleting tags.
+- [Quay Team API](https://apis.io/apis/quay/quay-team-api/) — Manage organization teams, team membership, team roles, and team permissions on repositories.
+- [Quay User API](https://apis.io/apis/quay/quay-user-api/) — Manage Quay user accounts, profile, starred repositories, and personal OAuth tokens.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-03-26
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### MCP servers (1)
 
-### Quay
+Model Context Protocol servers that expose the API to agents.
 
-Quay is a container image registry that enables you to build, store, distribute, and deploy container images with built-in security scanning, access controls, and automated build triggers.
+- [MCP Server](https://apis.io/servers/quay/mcp-server/)
 
-- **Human URL:** [https://quay.io/](https://quay.io/)
-- **Base URL:** `https://quay.io/api/v1`
+#### Agentic access (1)
 
-#### Tags
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- Container Images
-- Containers
-- Registry
-- Security Scanning
+- [Quay Agentic Access](https://apis.io/agentic-access/quay/quay-agentic-access/)
 
-#### Properties
+#### JSON Schema (3)
 
-- [Documentation](https://docs.quay.io/)
-- [Getting Started](https://docs.quay.io/guides/)
-- [Pricing](https://quay.io/plans/)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/openapi/quay-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [JSON-LD](https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-ld/quay-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-schema/quay-repository-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-schema/quay-tag-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/quay/refs/heads/main/json-schema/quay-manifest-security-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [Postman Collection](collections/quay.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/quay.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+The data models the API reads and writes.
 
-## Common Properties
+- [Quay Manifest Security Scan](https://apis.io/schemas/quay/quay-manifest-security/)
+- [Quay Repository](https://apis.io/schemas/quay/quay-repository/)
+- [Quay Tag](https://apis.io/schemas/quay/quay-tag/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Quay Context](https://apis.io/jsonld/quay/quay-context/)
+
+#### Collections (11)
+
+Postman and Open Collection request collections.
+
+- [Quay Container Registry API](https://apis.io/collections/quay/open-quay/)
+- [Quay Container Registry Build API](https://apis.io/collections/quay/open-quay-build-api/)
+- [Quay Container Registry Build Manifest API](https://apis.io/collections/quay/open-quay-manifest-api/)
+- [Quay Container Registry Build Organization API](https://apis.io/collections/quay/open-quay-organization-api/)
+- [Quay Container Registry Build Permission API](https://apis.io/collections/quay/open-quay-permission-api/)
+- [Quay Container Registry Build Repository API](https://apis.io/collections/quay/open-quay-repository-api/)
+- [Quay Container Registry Build Robot API](https://apis.io/collections/quay/open-quay-robot-api/)
+- [Quay Container Registry Build Security API](https://apis.io/collections/quay/open-quay-security-api/)
+- [Quay Container Registry Build Tag API](https://apis.io/collections/quay/open-quay-tag-api/)
+- [Quay Container Registry Build Team API](https://apis.io/collections/quay/open-quay-team-api/)
+- [Quay Container Registry Build User API](https://apis.io/collections/quay/open-quay-user-api/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [Quay — jsonschema rules](https://apis.io/rules/quay/quay-jsonschema-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Quay Authentication](https://apis.io/security/quay/quay-authentication/)
+- [Quay Domain Security](https://apis.io/security/quay/quay-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Quay Scopes](https://apis.io/scopes/quay/quay-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Quay Plans Pricing](https://apis.io/plans/quay/quay-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Quay Rate Limits](https://apis.io/rate-limits/quay/quay-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Quay Finops](https://apis.io/finops/quay/quay-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://quay.io/)
 - [Documentation](https://docs.quay.io/)
-- [Getting Started](https://docs.quay.io/guides/)
-- [GitHub Organization](https://github.com/quay)
+- [Getting started](https://docs.quay.io/guides/)
 - [Pricing](https://quay.io/plans/)
-- [Blog](https://www.redhat.com/en/blog)
-- [Sign Up](https://quay.io/signin/)
 - [Support](https://access.redhat.com/products/red-hat-quay/)
-- [M C P Server](https://github.com/quay/quay-mcp-server)
+- [Blog](https://www.redhat.com/en/blog)
+- [GitHub](https://github.com/quay)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 40.9** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 65.0 |
+| Contract quality | 56.9 |
+| Contract governance | 9.8 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 40.5 |
+| Access clarity | 31.6 |
+
+**Agent readiness 27.6** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | documented (partial credit) |
+| Auth Clarity | negotiable (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | documented (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 26.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/quay/](https://apis.io/providers/quay/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Quay: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/quay/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
